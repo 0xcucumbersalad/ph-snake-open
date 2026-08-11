@@ -17,9 +17,10 @@
 
 const TITLE = "SnaKédex Open Data API";
 const VERSION = "1.0.0";
-// Local development origin. All examples, links and the machine-readable
-// spec URL point here so the docs work entirely against localhost.
-const ORIGIN_HOMEPAGE = "http://localhost:3000";
+// Deployed origin used in the docs' copy-paste examples. The interactive
+// "Try it out" calls use the relative `/api` server URL, so they always hit
+// whatever host is serving the docs; this only affects the prose snippets.
+const ORIGIN_HOMEPAGE = "https://ph-snake-open.edgie.workers.dev";
 // The live SnaKédex project this open-data API is derived from.
 const SNAKEDEX_PROJECT = "https://snakedex.0xcucumbersalad.dev";
 // The public Facebook group every sighting was identified from.

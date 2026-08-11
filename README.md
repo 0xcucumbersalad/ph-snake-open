@@ -9,22 +9,26 @@ Only **admin-verified** sightings are exposed — records identified by a modera
 - **10,426** admin-verified sightings across **81** provinces
 - Species, common name, venom tier, province, photo, and moderator notes
 - No API key, no sign-up — every endpoint is a public `GET`
-- Built on [Hono](https://hono.dev); runs on Node, Cloudflare Workers, or Vercel Edge
+- Built on [Hono](https://hono.dev); deployed on Cloudflare Workers
 
-## Quick start
+## Live API
+
+Deployed at **https://ph-snake-open.edgie.workers.dev**
+
+- **Interactive docs (Swagger UI):** https://ph-snake-open.edgie.workers.dev/api/docs
+- **OpenAPI spec (JSON):** https://ph-snake-open.edgie.workers.dev/api/openapi.json
+- **Sightings:** https://ph-snake-open.edgie.workers.dev/api/sightings?province=Cebu
+
+The root path `/` redirects to `/api/docs`.
+
+## Run locally
 
 ```bash
 npm install
-npm run dev:node
+npm run dev        # wrangler dev (Workers runtime)
+# or
+npm run dev:node   # tsx server.ts on http://localhost:3000
 ```
-
-Then open:
-
-- **Interactive docs (Swagger UI):** http://localhost:3000/api/docs
-- **OpenAPI spec (JSON):** http://localhost:3000/api/openapi.json
-- **Sightings:** http://localhost:3000/api/sightings?province=Cebu
-
-The root path `/` redirects to `/api/docs`.
 
 ## Endpoints
 
@@ -96,24 +100,24 @@ curl "http://localhost:3000/api/sightings?province=Cebu&venom=highly-venomous&li
 
 ```
 .
-├── api/index.ts       # Vercel Edge entrypoint (wraps the Hono app)
-├── server.ts          # Node entrypoint (@hono/node-server)
+├── server.ts          # Local Node entrypoint (@hono/node-server)
 ├── src/
 │   ├── index.ts       # Hono app, routes, admin-only filtering
 │   ├── openapi.ts      # OpenAPI 3.0.3 document (generated per request)
 │   └── swaggerUi.ts   # Themed Swagger UI page
 ├── sightings.json     # Source dataset
-├── wrangler.toml      # Cloudflare Workers config
-└── vercel.json        # Vercel rewrite config
+└── wrangler.toml      # Cloudflare Workers config
 ```
 
 ## Deployment
 
-The same Hono app runs on three targets:
+Deployed on **Cloudflare Workers** (`src/index.ts`, set as `main` in `wrangler.toml`):
 
-- **Node** — `server.ts` via `@hono/node-server`
-- **Cloudflare Workers** — `src/index.ts` (`main` in `wrangler.toml`); deploy with `npm run build`
-- **Vercel Edge** — `api/index.ts`; `vercel.json` rewrites all routes to it
+```bash
+npm run build   # wrangler deploy
+```
+
+The bundled dataset is ~7 MB (~1 MB gzipped), comfortably within the Workers size limit. For local development, `server.ts` runs the same Hono app under Node via `@hono/node-server`.
 
 ## Data notes
 
