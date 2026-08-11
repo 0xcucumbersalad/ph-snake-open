@@ -4,7 +4,7 @@ import { logger } from 'hono/logger'
 
 import { openApiJsonResponse } from './openapi.js'
 import { swaggerUiResponse } from './swaggerUi.js'
-import sightingsData from '../sightings.json'
+import sightingsData from '../sightings.json' with { type: 'json' }
 
 const app = new Hono()
 
