@@ -2,8 +2,8 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
 
-import { openApiJsonResponse } from './openapi'
-import { swaggerUiResponse } from './swaggerUi'
+import { openApiJsonResponse } from './openapi.js'
+import { swaggerUiResponse } from './swaggerUi.js'
 import sightingsData from '../sightings.json'
 
 const app = new Hono()
