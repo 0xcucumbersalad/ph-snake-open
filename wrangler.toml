@@ -1,0 +1,6 @@
+name = "ph-snake-open"
+compatibility_date = "2024-04-05"
+main = "src/index.ts"
+
+[observability]
+enabled = true
