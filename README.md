@@ -126,6 +126,10 @@ The bundled dataset is ~7 MB (~1 MB gzipped), comfortably within the Workers siz
 - **Shed skins:** some records are photos of shed skins rather than live animals — check the `shed` field.
 - **Images:** the `image` field points at an external photo CDN (`snake-cdn.0xcucumbersalad.dev`).
 
+## Sponsor
+
+This API is free, open, and key-less. If it's useful to you, please consider [sponsoring on GitHub](https://github.com/sponsors/0xcucumbersalad) to help keep the data free and cover hosting. See [SPONSORS.md](SPONSORS.md) for details.
+
 ## Related
 
 - **[SnaKédex](https://snakedex.0xcucumbersalad.dev)** — the live SnaKédex app and map this open-data API is derived from.
